@@ -163,36 +163,38 @@ colorEl.addEventListener('click', function () {
 })
 
  // Task 10
+
+
 const divEl = document.querySelector('div#controls');
-const inputRandomEl = divEl.querySelector('input');
+const inputSomeEl = divEl.querySelector('input');
 const btnCreate = divEl.querySelector('button[data-create]');
 const btnDestroy = divEl.querySelector('button[data-destroy]');
 const boxesEl = document.querySelector("div#boxes")
-  
-// let amount = inputRandomEl.addEventListener('blur') 
- 
- 
-//  Розміри найпершого <div> - 30px на 30px.
-// Кожен елемент після першого повинен бути ширшим 
-// і вищим від попереднього на 10px.
-// Всі елементи повинні мати випадковий колір 
-// фону у форматі HEX.Використовуй готову
-//  функцію getRandomHexColor для отримання кольору.
- 
 
+let divListEl = [];
 
+function createBoxes(amount) {
+  let size = 30
+  for (let i = 0; i < amount; i += 1) {
+    boxesEl.insertAdjacentHTML("beforeend",
+      `<div style="width:${size}px; 
+      height :${size}px; 
+      background-color:${getRandomHexColor()};"> </div>`);
+    size +=10
+    console.log(divListEl)
+  }
+ boxesEl.append(...divListEl);
+}
 
-// function createBoxes(amount) {
-//   const divListEl = [];
-//   for (let i = 0; i < amount; i += 1) {
-//     const createDivEl = document.createElement("div");
-//     createDivEl.style.width = `${30+i*10}px`
-//     createDivEl.style.height = `${30+i*10}px`
-//     divListEl.push(createDivEl);
-//     console.log(divListEl)
-//   }
-//   boxesEl.append(...divListEl);
-//   console.log(boxesEl)
-// }
+function destroyBoxes() {
+  boxesEl.innerHTML = '';
+}
+
+btnCreate.addEventListener("click", () => {
  
-// createBoxes(5);
+  createBoxes(inputSomeEl.value)
+} )
+btnDestroy.addEventListener("click", () => {
+  destroyBoxes()
+  inputSomeEl.value = ''
+} )

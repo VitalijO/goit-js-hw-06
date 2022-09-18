@@ -90,7 +90,7 @@ const outputEl = document.querySelector('span#name-output');
 inputEl.addEventListener('input', onInputChange)
 
 function onInputChange(event) {
-  if (event.currentTarget.value.length === 0) {
+  if (event.currentTarget.value.trim().length === 0) {
     outputEl.textContent = "Anonymous";
   }
   else {
@@ -181,7 +181,6 @@ function createBoxes(amount) {
       height :${size}px; 
       background-color:${getRandomHexColor()};"> </div>`);
     size +=10
-    console.log(divListEl)
   }
  boxesEl.append(...divListEl);
 }
